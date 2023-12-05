@@ -1,0 +1,42 @@
+{
+    "Food": [
+      {
+        " Food1": 1,
+        "title": "Spinach Nutrition Tracker",
+        "Protein(grams)": 2.9,
+        "Calories": 23,
+        "Expiration Date": "2023-11-25"  
+      },
+      { 
+        "Food2": 2,
+        "title": "Almond Nutrition Tracker",
+        "Protein(grams)": 20.0,
+        "Calories": 116,
+        "Expiration Date": "2020-12-31"
+   
+      },
+      {
+        "Food3": 3,
+        "title": "Salmon Nutrition Tracker",
+        "Protein(grams)": 22.0,
+        "Calories": 206,
+        "Expiration Date": "2023-12-10"
+      },
+      {
+       "Food4": 4,
+        "title": "Chicken Breast Nutrition Tracker",
+        "Protein(grams)": 25.0,
+        "Calories": 165,
+        "Expiration Date": "2023-12-05"
+      },
+      {
+        "Food5": 5,
+        "title": "Banana Nutrition Tracker",
+        "Protein(grams)": 1.3,
+        "Calories": 105,
+        "Expiration Date": "2023-12-15"
+        
+      }
+    ]
+  }
+  
