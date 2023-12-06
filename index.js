@@ -37,22 +37,25 @@ async function retrieveDataFromMongoDB() {
     const uri = "mongodb+srv://rshai10:R16661666@cluster0.mongodb.net/dbname?retryWrites=true&w=majority";
     const client = new MongoClient(uri);
 
-    try {
-        await client.connect();
-        const databaseName = "food";
-        const collectionName = "nutrition";
-        const cursor = client.db(databaseName).collection(collectionName).find({});
-        const results = await cursor.toArray();
-        const formattedResults = [];
+   try {
+    await client.connect();
+    const databaseName = "food";
+    const collectionName = "nutrition";
+    const cursor = client.db(databaseName).collection(collectionName).find({});
+    const results = await cursor.toArray();
+    const formattedResults = [];
 
-        results.forEach(result => {
-            result.Food.forEach(foodItem => {
-                formattedResults.push({ _id: result._id, ...foodItem });
-            });
+    results.forEach(result => {
+        result.Food.forEach(foodItem => {
+            formattedResults.push({ _id: result._id, ...foodItem });
         });
+    });
 
-        return formattedResults;
-    } finally {
-        await client.close();
-    }
+    return formattedResults;
+} catch (error) {
+    console.error("Error during MongoDB operation:", error);
+    throw error; // Rethrow the error to propagate it to the calling function
+} finally {
+    await client.close();
 }
+
