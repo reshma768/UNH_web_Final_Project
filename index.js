@@ -34,7 +34,7 @@ http.createServer(async (req, res) => {
 }).listen(5959, () => console.log("Server is running on port 5959"));
 
 async function retrieveDataFromMongoDB() {
-    const uri = "mongodb+srv://rshai10:R16661666@cluster0.yxifel9.mongodb.net/?retryWrites=true&w=majority";
+    const uri = "mongodb+srv://rshai10:R16661666@cluster0.mongodb.net/dbname?retryWrites=true&w=majority";
     const client = new MongoClient(uri);
 
     try {
