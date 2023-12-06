@@ -4,7 +4,7 @@ const path = require('path');
 const { MongoClient } = require('mongodb');
 
 const PORT = 5959;
-const MONGODB_URI = "mongodb+srv://rshai10:R16661666@cluster0.mongodb.net/food?retryWrites=true&w=majority";
+const MONGODB_URI = "mongodb+srv://rshai10:<password>@cluster0.yxifel9.mongodb.net/?retryWrites=true&w=majority";
 
 http.createServer(async (req, res) => {
     console.log(req.url);
