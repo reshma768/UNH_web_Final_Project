@@ -3,6 +3,9 @@ const fs = require('fs');
 const path = require('path');
 const { MongoClient } = require('mongodb');
 
+const PORT = 5959;
+const MONGODB_URI = "mongodb+srv://rshai10:R16661666@cluster0.mongodb.net/food?retryWrites=true&w=majority";
+
 http.createServer(async (req, res) => {
     console.log(req.url);
     if (req.url === '/') {
@@ -31,31 +34,30 @@ http.createServer(async (req, res) => {
         res.writeHead(404, { 'Content-Type': 'text/html' });
         res.end("<h1> 404 Nothing is here </h1>");
     }
-}).listen(5959, () => console.log("Server is running on port 5959"));
+}).listen(PORT, () => console.log(`Server is running on port ${PORT}`));
 
 async function retrieveDataFromMongoDB() {
-    const uri = "mongodb+srv://rshai10:R16661666@cluster0.mongodb.net/dbname?retryWrites=true&w=majority";
-    const client = new MongoClient(uri);
+    const client = new MongoClient(MONGODB_URI);
 
-   try {
-       await client.connect();
-       const databaseName = "food";
-       const collectionName = "nutrition";
-       const cursor = client.db(databaseName).collection(collectionName).find({});
-       const results = await cursor.toArray();
-       const formattedResults = [];
+    try {
+        await client.connect();
+        const databaseName = "food";
+        const collectionName = "nutrition";
+        const cursor = client.db(databaseName).collection(collectionName).find({});
+        const results = await cursor.toArray();
+        const formattedResults = [];
 
-       results.forEach(result => {
-          result.Food.forEach(foodItem => {
-            formattedResults.push({ _id: result._id, ...foodItem });
-          });
-       });
+        results.forEach(result => {
+            result.Food.forEach(foodItem => {
+                formattedResults.push({ _id: result._id, ...foodItem });
+            });
+        });
 
-       return formattedResults;
+        return formattedResults;
     } catch (error) {
-    console.error("Error during MongoDB operation:", error);
-    throw error; // Rethrow the error to propagate it to the calling function
+        console.error("Error during MongoDB operation:", error);
+        throw error; // Rethrow the error to propagate it to the calling function
     } finally {
-    await client.close();
+        await client.close();
     }
-
+}
