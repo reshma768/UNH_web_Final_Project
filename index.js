@@ -52,6 +52,9 @@ async function retrieveDataFromMongoDB() {
         });
 
         return formattedResults;
+    } catch (error) {
+        console.error("MongoDB Error:", error);
+        throw error; // Rethrow the error to propagate it to the calling function
     } finally {
         await client.close();
     }
